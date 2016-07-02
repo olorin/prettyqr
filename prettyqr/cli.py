@@ -8,4 +8,5 @@ def main():
     outfile = "prettyqr.png"
     if len(sys.argv) > 3:
         outfile = sys.argv[3]
-    make_pretty_qr(data, img, out_path=outfile)
+    qr = make_pretty_qr(data, img)
+    qr.save(outfile)

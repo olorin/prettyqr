@@ -21,7 +21,7 @@ def rgba_search_replace(img, old, new):
 
 def make_qr(data, box_size, border, width, height, black_opacity=200, white_opacity=25):
     qr = qrcode.QRCode(
-        version=None,
+        version=None, # pick version based on the data
         error_correction=qrcode.constants.ERROR_CORRECT_H,
         box_size=box_size,
         border=0, # we make our own border
@@ -38,18 +38,20 @@ def make_qr(data, box_size, border, width, height, black_opacity=200, white_opac
     qr_scaled = qr_img.resize((qr_w, qr_h))
     qr_layer = Image.new("RGBA", (width, height), color=(0, 0, 0, 0))
     qr_box = (
-        border_px,
-        border_px,
-        height - border_px,
-        width - border_px
+        border_px, # from left
+        border_px, # from top
+        height - border_px, # from bottom
+        width - border_px # from right
     )
     qr_layer.paste(qr_scaled, qr_box)
     return qr_layer
 
-def make_pretty_qr(data, img, border=4, out_path="qr.png"):
+def make_pretty_qr(data, img, border=4):
+    """
+    Create an image from a QR encoding of the provided data, composited with
+   the provided image file (which must be square) optimising for scannability.
+    """
     base_img = load_image(img)
     qr_img = make_qr(data, 1, border, base_img.size[0], base_img.size[1])
-    final_img = Image.alpha_composite(base_img, qr_img)
-
-    final_img.save(out_path)
+    return Image.alpha_composite(base_img, qr_img)
     
