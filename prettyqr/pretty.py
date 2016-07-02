@@ -19,7 +19,7 @@ def rgba_search_replace(img, old, new):
             if px == old:
                 img.putpixel((x, y), new)
 
-def make_qr(data, box_size, border, width, height):
+def make_qr(data, box_size, border, width, height, black_opacity=200, white_opacity=25):
     qr = qrcode.QRCode(
         version=None,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -29,7 +29,8 @@ def make_qr(data, box_size, border, width, height):
     qr.add_data(data)
     qr.make(fit=True)
     qr_img = qr.make_image().convert("RGBA")
-    rgba_search_replace(qr_img, (255, 255, 255, 255), (0, 0, 0, 0))
+    rgba_search_replace(qr_img, (255, 255, 255, 255), (255, 255, 255, white_opacity))
+    rgba_search_replace(qr_img, (0, 0, 0, 255), (0, 0, 0, black_opacity))
     scale = width / qr_img.size[0]
     border_px = int(border * box_size * scale)
     qr_w = width - (border_px * 2)
