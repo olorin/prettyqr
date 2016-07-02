@@ -19,7 +19,7 @@ def rgba_search_replace(img, old, new):
             if px == old:
                 img.putpixel((x, y), new)
 
-def make_qr(data, box_size, border, width, height, black_opacity=200, white_opacity=25):
+def make_qr(data, box_size, border, width, height, black_opacity=200, white_opacity=0):
     qr = qrcode.QRCode(
         version=None, # pick version based on the data
         error_correction=qrcode.constants.ERROR_CORRECT_H,
