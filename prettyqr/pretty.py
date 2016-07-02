@@ -30,7 +30,8 @@ def make_qr(data, box_size, border, width, height):
     qr.make(fit=True)
     qr_img = qr.make_image().convert("RGBA")
     rgba_search_replace(qr_img, (255, 255, 255, 255), (0, 0, 0, 0))
-    border_px = border * box_size
+    scale = width / qr_img.size[0]
+    border_px = int(border * box_size * scale)
     qr_w = width - (border_px * 2)
     qr_h = height - (border_px * 2)
     qr_scaled = qr_img.resize((qr_w, qr_h))
@@ -44,9 +45,9 @@ def make_qr(data, box_size, border, width, height):
     qr_layer.paste(qr_scaled, qr_box)
     return qr_layer
 
-def make_pretty_qr(data, img, border=4, box_size=10, out_path="qr.png"):
+def make_pretty_qr(data, img, border=4, out_path="qr.png"):
     base_img = load_image(img)
-    qr_img = make_qr(data, box_size, border, base_img.size[0], base_img.size[1])
+    qr_img = make_qr(data, 1, border, base_img.size[0], base_img.size[1])
     final_img = Image.alpha_composite(base_img, qr_img)
 
     final_img.save(out_path)
