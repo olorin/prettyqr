@@ -46,12 +46,12 @@ def make_qr(data, box_size, border, width, height, black_opacity=200, white_opac
     qr_layer.paste(qr_scaled, qr_box)
     return qr_layer
 
-def make_pretty_qr(data, img, border=4):
+def make_pretty_qr(data, img, border=4, black_opacity=200):
     """
     Create an image from a QR encoding of the provided data, composited with
    the provided image file (which must be square) optimising for scannability.
     """
     base_img = load_image(img)
-    qr_img = make_qr(data, 1, border, base_img.size[0], base_img.size[1])
+    qr_img = make_qr(data, 1, border, base_img.size[0], base_img.size[1], black_opacity=black_opacity)
     return Image.alpha_composite(base_img, qr_img)
     

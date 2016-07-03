@@ -31,10 +31,22 @@ def mkparser():
         default="prettyqr.png",
         help="Path to write composite image file to. Extension will determine the output format. Defaults to \"prettyqr.png\"."
     )
-                        
+    parser.add_argument(
+        "--qr-opacity",
+        dest="qr_opacity",
+        type=int,
+        default=200,
+        help="Opacity of the QR code modules (black bits), between 0 (invisible) and 255 (opaque). Default is 200."
+    )
+
     return parser
 
 def main():
     args = mkparser().parse_args()
-    qr = make_pretty_qr(args.data, args.image, border=args.border)
+    qr = make_pretty_qr(
+        args.data,
+        args.image,
+        border=args.border,
+        black_opacity=args.qr_opacity,
+    )
     qr.save(args.out_file)
