@@ -4,3 +4,6 @@ class PrettyException(Exception):
 
 class ImageNotSquareException(PrettyException):
     pass
+
+class BaseImageSmallerThanQRCodeException(PrettyException):
+    pass

@@ -36,6 +36,11 @@ def make_qr(data,
     qr.add_data(data)
     qr.make(fit=True)
     qr_img = qr.make_image().convert("RGBA")
+
+    # Shrinking QR code is not gonna work at one pixel per module.
+    if qr_img.size[0] > width or qr_img.size[1] > height:
+        raise BaseImageSmallerThanQRCodeException
+
     rgba_search_replace(qr_img,
                         (255, 255, 255, 255),
                         (255, 255, 255, white_opacity))
