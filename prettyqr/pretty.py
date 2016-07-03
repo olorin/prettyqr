@@ -19,7 +19,14 @@ def rgba_search_replace(img, old, new):
             if px == old:
                 img.putpixel((x, y), new)
 
-def make_qr(data, box_size, border, width, height, black_opacity=200, white_opacity=0):
+def make_qr(data,
+            box_size,
+            border,
+            width,
+            height,
+            qr_opacity=200,
+            white_opacity=0,
+            qr_rgb=(0,0,0)):
     qr = qrcode.QRCode(
         version=None, # pick version based on the data
         error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -29,8 +36,12 @@ def make_qr(data, box_size, border, width, height, black_opacity=200, white_opac
     qr.add_data(data)
     qr.make(fit=True)
     qr_img = qr.make_image().convert("RGBA")
-    rgba_search_replace(qr_img, (255, 255, 255, 255), (255, 255, 255, white_opacity))
-    rgba_search_replace(qr_img, (0, 0, 0, 255), (0, 0, 0, black_opacity))
+    rgba_search_replace(qr_img,
+                        (255, 255, 255, 255),
+                        (255, 255, 255, white_opacity))
+    rgba_search_replace(qr_img,
+                        (0, 0, 0, 255),
+                        (qr_rgb[0], qr_rgb[1], qr_rgb[2], qr_opacity))
     scale = width / qr_img.size[0]
     border_px = int(border * box_size * scale)
     qr_w = width - (border_px * 2)
@@ -46,12 +57,12 @@ def make_qr(data, box_size, border, width, height, black_opacity=200, white_opac
     qr_layer.paste(qr_scaled, qr_box)
     return qr_layer
 
-def make_pretty_qr(data, img, border=4, black_opacity=200):
+def make_pretty_qr(data, img, border=4, qr_opacity=200, qr_rgb=(0,0,0)):
     """
     Create an image from a QR encoding of the provided data, composited with
    the provided image file (which must be square) optimising for scannability.
     """
     base_img = load_image(img)
-    qr_img = make_qr(data, 1, border, base_img.size[0], base_img.size[1], black_opacity=black_opacity)
+    qr_img = make_qr(data, 1, border, base_img.size[0], base_img.size[1], qr_opacity=qr_opacity, qr_rgb=qr_rgb)
     return Image.alpha_composite(base_img, qr_img)
     

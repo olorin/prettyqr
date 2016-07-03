@@ -36,8 +36,30 @@ def mkparser():
         dest="qr_opacity",
         type=int,
         default=200,
-        help="Opacity of the QR code modules (black bits), between 0 (invisible) and 255 (opaque). Default is 200."
+        help="Opacity of the QR code modules, between 0 (invisible) and 255 (opaque). Default is 200."
     )
+    parser.add_argument(
+        "--qr-red",
+        dest="qr_red",
+        type=int,
+        default=0,
+        help="Red element of the QR module color, between 0 and 255. Default is 0.",
+    )
+    parser.add_argument(
+        "--qr-green",
+        dest="qr_green",
+        type=int,
+        default=0,
+        help="Green element of the QR module color, between 0 and 255. Default is 0.",
+    )
+    parser.add_argument(
+        "--qr-blue",
+        dest="qr_blue",
+        type=int,
+        default=0,
+        help="Blue element of the QR module color, between 0 and 255. Default is 0.",
+    )
+
 
     return parser
 
@@ -47,6 +69,7 @@ def main():
         args.data,
         args.image,
         border=args.border,
-        black_opacity=args.qr_opacity,
+        qr_opacity=args.qr_opacity,
+        qr_rgb=(args.qr_red, args.qr_green, args.qr_blue),
     )
     qr.save(args.out_file)
