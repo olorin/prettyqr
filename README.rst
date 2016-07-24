@@ -8,22 +8,18 @@ Example usage
 
 Take a background image:
 
-.. image:: img/dna-orig.png
+.. image:: https://raw.githubusercontent.com/olorin/prettyqr/master/img/dna-orig.png
    :alt: Original image
 
-And a URL or some other text:
+And a URL or some other text::
 
-```
-foo.com
-```
+    foo.com
 
-Combine them:
+Combine them::
 
-```
-prettyqr foo.com img/dna-orig.png --outfile img/dna-qr.png
-```
+    prettyqr foo.com img/dna-orig.png --outfile img/dna-qr.png
 
-.. image:: img/dna-qr.png
+.. image:: https://raw.githubusercontent.com/olorin/prettyqr/master/img/dna-qr.png
    :alt: QR code image
 
 Command-line options
