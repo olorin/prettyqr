@@ -66,9 +66,9 @@ Limitations
 `prettyqr` is a fairly raw proof-of-concept, and currently has an
 assortment of limitations:
 
- - Only supports square images.
- - Only supports square QR modules.
- - Doesn't support complex color changes in the source image.
+* Only supports square images.
+* Only supports square QR modules.
+* Doesn't support complex color changes in the source image.
 
 It will work best with sources where the focus of the image is not
 central, and doesn't handle black backgrounds very well.
