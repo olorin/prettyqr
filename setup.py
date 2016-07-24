@@ -46,4 +46,7 @@ setup(
             "prettyqr=prettyqr.cli:main",
         ],
     },
+    data_files=[
+        ("img", ["img/dna-orig.png", "img/dna-qr.png"]),
+    ],
 )
