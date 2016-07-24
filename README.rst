@@ -3,6 +3,12 @@ prettyqr
 
 Create QR codes merged with images.
 
+This package creates QR codes based on image files; the QR code is
+superimposed on the image, optionally with reduced transparency, such
+that the readability of the QR code can be maximized (they aren't
+normally intended to be read from noisy backgrounds such as other
+images).
+
 Installation
 ------------
 
