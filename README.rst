@@ -17,7 +17,7 @@ And a URL or some other text::
 
 Combine them::
 
-    prettyqr foo.com img/dna-orig.png --outfile img/dna-qr.png
+    prettyqr --qr-opacity 150 --outfile img/dna-qr.png foo.com img/dna-orig.png
 
 .. image:: https://raw.githubusercontent.com/olorin/prettyqr/master/img/dna-qr.png
    :alt: QR code image
