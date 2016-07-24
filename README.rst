@@ -3,6 +3,15 @@ prettyqr
 
 Create QR codes merged with images.
 
+Installation
+------------
+
+::
+
+   pip install prettyqr
+
+You will need `Python <https://www.python.org/>`_ and `pip <https://pypi.python.org/pypi/pip>`_.
+
 Example usage
 -------------
 
