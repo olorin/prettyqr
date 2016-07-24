@@ -15,7 +15,7 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 
 setup(
     name="prettyqr",
-    version="0.0.1",
+    version="0.0.2",
     description="Create QR codes merged with images.",
     long_description=desc,
     url="https://github.com/olorin/prettyqr",
