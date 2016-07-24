@@ -8,7 +8,8 @@ Example usage
 
 Take a background image:
 
-![Original image](img/dna-orig.png)
+.. image:: img/dna-orig.png
+   :alt: Original image
 
 And a URL or some other text:
 
@@ -22,7 +23,8 @@ Combine them:
 prettyqr foo.com img/dna-orig.png --outfile img/dna-qr.png
 ```
 
-![QR code image](img/dna-qr.png)
+.. image:: img/dna-qr.png
+   :alt: QR code image
 
 Command-line options
 --------------------
